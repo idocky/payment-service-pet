@@ -8,6 +8,12 @@ RUN install-php-extensions \
     gd \
     zip
 
+RUN pecl install xdebug  \
+    && docker-php-ext-enable xdebug
+
+# Install composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
 COPY . /app
 WORKDIR /app
 
